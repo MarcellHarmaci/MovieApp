@@ -1,0 +1,54 @@
+<Page x:Class="MovieApp.Views.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:controls="using:Template10.Controls"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:MovieApp.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:vm="using:MovieApp.ViewModels"
+      mc:Ignorable="d">
+
+    <Page.DataContext>
+        <vm:MainPageViewModel x:Name="ViewModel" />
+    </Page.DataContext>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <controls:PageHeader Content="MovieApp" Grid.Row="0" />
+
+        <!-- TODO ItemSource Binding -->
+        <GridView Grid.Row="1"
+                  Padding="18"
+                  IsItemClickEnabled="True"
+                  ItemClick="RecipeGroups_ItemClick">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="250" Height="250">
+                        <!-- TODO Binding -->
+                        <Image Stretch="UniformToFill" VerticalAlignment="Center" />
+                        <Border VerticalAlignment="Bottom" Background="#AA000000">
+                            <TextBlock Margin="12" Foreground="White" Text="Recipe Title"/>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+            <GridView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <!-- TODO Binding -->
+                            <TextBlock Margin="-12,0,0,0" Text="Recipe Group Title"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </GridView.GroupStyle>
+        </GridView>
+    </Grid>
+</Page>
+
