@@ -20,7 +20,7 @@ namespace MovieApp.Services
 		{
 			using (var httpClient = new HttpClient())
 			{
-				//Add a header to the GET request. 
+				// Add header to the GET request 
 				HttpRequestHeaders headers = httpClient.DefaultRequestHeaders;
 				headers.Add("ContentType", "application/json");
 				headers.Add("trakt-api-version", "2");

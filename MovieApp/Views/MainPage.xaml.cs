@@ -10,9 +10,10 @@ namespace MovieApp.Views
             InitializeComponent();
         }
 
-        private void RecipeGroups_ItemClick(object sender, ItemClickEventArgs e)
+        private void Movies_ItemClick(object sender, ItemClickEventArgs e)
         {
-            // TODO Navigate to recipe details page
+            // TODO Navigate to movie details page
         }
+
     }
 }
