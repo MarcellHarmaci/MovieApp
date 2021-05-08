@@ -18,6 +18,20 @@ namespace MovieApp.ViewModels
 			set {
 				movieDetails = value;
 				RaisePropertyChanged(() => MovieDetails);
+				RaisePropertyChanged(() => MovieLength);
+			}
+		}
+
+		public string MovieLength { 
+			get {
+				try
+				{
+					return $"{MovieDetails.Runtime} minutes";
+				}
+				catch(NullReferenceException ex)
+				{
+					return "<number>";
+				}
 			}
 		}
 
@@ -35,5 +49,13 @@ namespace MovieApp.ViewModels
 			await base.OnNavigatedToAsync(parameter, mode, state);
 		}
 
+		//public async Task OpenTrailer()
+		//{
+		//	// The URI to launch
+		//	var uriBing = new Uri(MovieDetails.Trailer.ToString());
+
+		//	// Launch the URI
+		//	await Windows.System.Launcher.LaunchUriAsync(uriBing);
+		//}
 	}
 }

@@ -26,5 +26,10 @@ namespace MovieApp.Views
 		{
 			this.InitializeComponent();
 		}
+
+		//private async void launchURI_Click(object sender, RoutedEventArgs e)
+		//{
+		//	ViewModel.OpenTrailer();
+		//}
 	}
 }

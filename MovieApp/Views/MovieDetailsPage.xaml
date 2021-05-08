@@ -13,7 +13,7 @@
 		<vm:MovieDetailsPageViewModel x:Name="ViewModel" />
 	</Page.DataContext>
 	
-    <Grid>
+    <Grid Margin="16">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="auto"/>
 			<ColumnDefinition Width="*"/>
@@ -21,10 +21,69 @@
 
 		<Grid.RowDefinitions>
 			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
 		</Grid.RowDefinitions>
 		
-		<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding MovieDetails.Title}" 
+		<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding MovieDetails.Title}" Margin="0,0,0,16" 
 				HorizontalTextAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}"/>
+
+		<TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding MovieDetails.Overview}" 
+				HorizontalTextAlignment="Justify" Style="{ThemeResource BodyTextBlockStyle}"/>
+
+		<ProgressBar Grid.Row="2" Grid.ColumnSpan="2" Value="{Binding MovieDetails.Rating}"
+					 Maximum="10" Height="29" Margin="0,16,0,16" Foreground="DodgerBlue"/>
+
+		<Grid Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="auto"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+
+			<TextBlock Grid.Row="1" Text="{Binding MovieDetails.Rating}" 
+					   Margin="0,20,16,16" Foreground="White"
+					   HorizontalTextAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}"/>
+		</Grid>
+
+		<TextBlock Grid.Row="3" Grid.Column="0" Text="Tagline" Margin="0,0,16,4"
+				HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
+		<TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding MovieDetails.Tagline}" 
+				HorizontalTextAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}"/>
+
+		<TextBlock Grid.Row="4" Grid.Column="0" Text="Length" Margin="0,0,16,4"
+				HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
+		<TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding MovieLength}" 
+				HorizontalTextAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}"/>
+
+		<TextBlock Grid.Row="5" Grid.Column="0" Text="Trailer" Margin="0,0,16,4"
+				HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
+		<TextBlock Grid.Row="5" Grid.Column="1" 
+				   Text="{Binding MovieDetails.Trailer}" 
+				HorizontalTextAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}">
+		</TextBlock>
+
+		<TextBlock Grid.Row="6" Grid.Column="0" Text="Release date" Margin="0,0,16,4"
+				HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
+		<TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding MovieDetails.Released}" 
+				HorizontalTextAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}"/>
+
+		<TextBlock Grid.Row="7" Grid.Column="0" Text="Certification" Margin="0,0,16,4"
+				HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
+		<TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding MovieDetails.Certification}" 
+				HorizontalTextAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}"/>
 		
+		<TextBlock Grid.Row="8" Grid.Column="0" Text="Rated by" Margin="0,0,16,4"
+				HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
+		<TextBlock Grid.Row="8" Grid.Column="1" Text="{Binding MovieDetails.Votes}" 
+				HorizontalTextAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}"/>
+
 	</Grid>
 </Page>
