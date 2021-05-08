@@ -33,7 +33,7 @@
 			
 			<TextBox Grid.Column="0" 
 					 PlaceholderText="What to watch today?" 
-					 Text="{Binding searchTerm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+					 Text="{Binding SearchTerm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
 					 KeyDown="TextBox_Search_OnKeyDown"
 					 Margin="12,6,12,6"/>
 			
@@ -68,7 +68,9 @@
 					   HorizontalTextAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}"/>
 
 			<ListView Grid.Row="2" Grid.ColumnSpan="7" Height="544"
-					  ItemsSource="{x:Bind ViewModel.PopularMovies}">
+					  ItemsSource="{x:Bind ViewModel.PopularMovies}"
+					  IsItemClickEnabled="True"
+					  ItemClick="PopularMovies_OnItemClick">
 
 				<ListView.ItemContainerStyle>
 					<Style TargetType="ListViewItem">
@@ -109,11 +111,11 @@
 			</Grid.ColumnDefinitions>
 
 			<Button Grid.Column="1" Content="&lt;" VerticalAlignment="Center" HorizontalAlignment="Center" 
-					Click="{x:Bind ViewModel.PrevPage}" IsEnabled="{Binding isPrevPageAvailable}"/>
+					Click="{x:Bind ViewModel.PrevPage}" IsEnabled="{Binding IsPrevPageAvailable}"/>
 			<TextBlock Grid.Column="2" Text="{Binding PagingString}" 
 					   VerticalAlignment="Center" HorizontalTextAlignment="Center"/>
 			<Button Grid.Column="3" Content="&gt;" VerticalAlignment="Center" HorizontalAlignment="Center" 
-					Click="{x:Bind ViewModel.NextPage}" IsEnabled="{Binding isNextPageAvailable}"/>
+					Click="{x:Bind ViewModel.NextPage}" IsEnabled="{Binding IsNextPageAvailable}"/>
 		</Grid>
 
 	</StackPanel>

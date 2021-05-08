@@ -13,11 +13,6 @@ namespace MovieApp.Views
             InitializeComponent();
         }
 
-        private void Movies_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            // TODO Navigate to movie details page
-        }
-
 		private void SearchButton_Click(object sender, RoutedEventArgs e)
 		{
             ViewModel.Search();

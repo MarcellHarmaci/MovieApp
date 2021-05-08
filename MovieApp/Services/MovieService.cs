@@ -33,15 +33,16 @@ namespace MovieApp.Services
 					var response = await httpClient.GetAsync(uri);
 					response.EnsureSuccessStatusCode();
 					json = await response.Content.ReadAsStringAsync();
+					T result = JsonConvert.DeserializeObject<T>(json);
+					return result;
 				}
 				catch (Exception ex)
 				{
-					System.Diagnostics.Debug.WriteLine("Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message);
+					System.Diagnostics.Debug.WriteLine($"Exception: {ex.StackTrace}\nMessage: {ex.Message}");
 				}
 				System.Diagnostics.Debug.WriteLine(json);
 
-				T result = JsonConvert.DeserializeObject<T>(json);
-				return result;
+				return default(T);
 			}
 		}
 
@@ -58,6 +59,13 @@ namespace MovieApp.Services
 
 			Uri uri = new Uri(serverUrl, relativeUri);
 			return await GetAsync<List<Movie>>(uri);
+		}
+
+		public async Task<MovieDetails> GetMovieDetailsAsync(string movieSlug)
+		{
+			string relativeUri = $"movies/{movieSlug}?extended=full";
+			Uri uri = new Uri(serverUrl, relativeUri);
+			return await GetAsync<MovieDetails>(uri);
 		}
 
 	}
