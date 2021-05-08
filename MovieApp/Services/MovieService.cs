@@ -45,9 +45,19 @@ namespace MovieApp.Services
 			}
 		}
 
-		public async Task<List<Movie>> GetPopularMoviesAsync()
+		public async Task<List<Movie>> GetPopularMoviesAsync(
+			bool withPagination = false,
+			int? page = null,
+			int? limit = null
+		)
 		{
-			return await GetAsync<List<Movie>>(new Uri(serverUrl, "movies/popular"));
+			string relativeUri = "movies/popular";
+
+			if (withPagination && page != null && limit != null)
+				relativeUri += $"?page={page}&limit={limit}";
+
+			Uri uri = new Uri(serverUrl, relativeUri);
+			return await GetAsync<List<Movie>>(uri);
 		}
 
 	}
