@@ -1,3 +1,4 @@
+using MovieApp.Models;
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -29,6 +30,12 @@ namespace MovieApp.Views
                 ViewModel.Search();
             }
 		}
+
+        private void PopularMovies_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            var movie = (Movie)e.ClickedItem;
+            ViewModel.NavigateToMovieDetails(movie.Ids.slug);
+        }
 
     }
 }

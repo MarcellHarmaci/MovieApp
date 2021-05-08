@@ -67,7 +67,7 @@
 			<TextBlock Grid.Row="1" Grid.ColumnSpan="7" Text="Popular movies" 
 					   HorizontalTextAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}"/>
 
-			<ListView Grid.Row="2" Grid.ColumnSpan="7" Height="480"
+			<ListView Grid.Row="2" Grid.ColumnSpan="7" Height="544"
 					  ItemsSource="{x:Bind ViewModel.PopularMovies}">
 
 				<ListView.ItemContainerStyle>
@@ -85,10 +85,10 @@
 								<RowDefinition Height="auto"/>
 							</Grid.RowDefinitions>
 							
-							<TextBlock Grid.Row="0" Text="{x:Bind title}" HorizontalAlignment="Center"
+							<TextBlock Grid.Row="0" Text="{x:Bind Title}" HorizontalAlignment="Center"
 										Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
 
-							<TextBlock Grid.Row="1" Text="{x:Bind year}" HorizontalAlignment="Center"
+							<TextBlock Grid.Row="1" Text="{x:Bind Year}" HorizontalAlignment="Center"
 										Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
 
 						</Grid>
@@ -103,14 +103,15 @@
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="auto"/>
-				<ColumnDefinition Width="auto"/>
+				<ColumnDefinition Width="120"/>
 				<ColumnDefinition Width="auto"/>
 				<ColumnDefinition Width="*"/>
 			</Grid.ColumnDefinitions>
 
 			<Button Grid.Column="1" Content="&lt;" VerticalAlignment="Center" HorizontalAlignment="Center" 
 					Click="{x:Bind ViewModel.PrevPage}" IsEnabled="{Binding isPrevPageAvailable}"/>
-			<TextBlock Grid.Column="2" Text="1/10" VerticalAlignment="Center" HorizontalTextAlignment="Center" Margin="50,0,50,0"/>
+			<TextBlock Grid.Column="2" Text="{Binding PagingString}" 
+					   VerticalAlignment="Center" HorizontalTextAlignment="Center"/>
 			<Button Grid.Column="3" Content="&gt;" VerticalAlignment="Center" HorizontalAlignment="Center" 
 					Click="{x:Bind ViewModel.NextPage}" IsEnabled="{Binding isNextPageAvailable}"/>
 		</Grid>

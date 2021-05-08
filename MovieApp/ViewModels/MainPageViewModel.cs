@@ -9,6 +9,7 @@ using MovieApp.Models;
 using System.Collections.ObjectModel;
 using MovieApp.Services;
 using System.ComponentModel;
+using MovieApp.Views;
 
 namespace MovieApp.ViewModels
 {
@@ -19,7 +20,7 @@ namespace MovieApp.ViewModels
 
 		public string SearchTerm { get; set; }
 
-		public int currentPage;
+		public int currentPage = 1;
 		public int CurrentPage
 		{
 			get => currentPage;
@@ -28,19 +29,26 @@ namespace MovieApp.ViewModels
 				if (value > 0 && value <= 10)
 				{
 					currentPage = value;
-					RaisePropertyChanged(() => this.isPrevPageAvailable);
-					RaisePropertyChanged(() => this.isNextPageAvailable);
+					RaisePropertyChanged(() => this.IsPrevPageAvailable);
+					RaisePropertyChanged(() => this.IsNextPageAvailable);
+					RaisePropertyChanged(() => this.PagingString);
 				}
 			}
 		}
-		private readonly int pageLimit = 10;
+		
+		private readonly int PageLimit = 10;
 
-		public bool isPrevPageAvailable
+		public string PagingString
+		{
+			get { return $"{CurrentPage} / {PageLimit}"; }
+		}
+
+		public bool IsPrevPageAvailable
 		{
 			get { return CurrentPage > 1; }
 		}
 
-		public bool isNextPageAvailable
+		public bool IsNextPageAvailable
 		{
 			get { return CurrentPage < 10; }
 		}
@@ -61,7 +69,7 @@ namespace MovieApp.ViewModels
 			PopularMovies.Clear();
 
 			var service = new MovieService();
-			var movies = await service.GetPopularMoviesAsync(true, CurrentPage, pageLimit);
+			var movies = await service.GetPopularMoviesAsync(true, CurrentPage, PageLimit);
 
 			foreach (var item in movies)
 			{
@@ -71,20 +79,32 @@ namespace MovieApp.ViewModels
 
 		public async Task PrevPage()
 		{
-			CurrentPage--;
-			await LoadCurrentPage();
+			if (CurrentPage > 1)
+			{
+				CurrentPage--;
+				await LoadCurrentPage();
+			}
 		}
 
 		public async Task NextPage()
 		{
-			CurrentPage++;
-			await LoadCurrentPage();
+			if (CurrentPage < 10)
+			{
+				CurrentPage++;
+				await LoadCurrentPage();
+			}
 		}
 
 		public void Search()
 		{
 			System.Diagnostics.Debug.WriteLine($"Searching by term: {SearchTerm}");
 		}
+
+		internal void NavigateToMovieDetails(string movieSlug)
+		{
+			NavigationService.Navigate(typeof(MovieDetailsPage), movieSlug);
+		}
+
 	}
 }
 

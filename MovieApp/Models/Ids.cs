@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace MovieApp.Models
 {
-
-	public class Movie
+	public class Ids
 	{
-		public string Title { get; set; }
-		public int Year { get; set; }
-		public Ids Ids { get; set; }
+		public int Trakt { get; set; }
+		public string slug { get; set; }
+		public string Imdb { get; set; }
+		public int Tmdb { get; set; }
 	}
-
 }
