@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieApp.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,5 +27,12 @@ namespace MovieApp.Views
 		{
 			this.InitializeComponent();
 		}
+
+		private void MovieListItem_OnItemClick(object sender, ItemClickEventArgs e)
+		{
+			var movie = (Movie)e.ClickedItem;
+			ViewModel.NavigateToMovieDetails(movie.Ids.slug);
+		}
+		
 	}
 }

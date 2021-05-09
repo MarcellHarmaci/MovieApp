@@ -24,14 +24,10 @@ namespace MovieApp.ViewModels
 
 		public string MovieLength { 
 			get {
-				try
-				{
+				if (MovieDetails != null)
 					return $"{MovieDetails.Runtime} minutes";
-				}
-				catch(NullReferenceException ex)
-				{
+				else
 					return "<length>";
-				}
 			}
 		}
 
@@ -46,19 +42,8 @@ namespace MovieApp.ViewModels
 			MovieDetails = await service.GetMovieDetailsAsync(slug);
 			RaisePropertyChanged(() => MovieDetails);
 
-			var imageService = new ImageService();
-			await imageService.GetMovieImageAsync("tt1285016");
-
 			await base.OnNavigatedToAsync(parameter, mode, state);
 		}
 
-		//public async Task OpenTrailer()
-		//{
-		//	// The URI to launch
-		//	var uriBing = new Uri(MovieDetails.Trailer.ToString());
-
-		//	// Launch the URI
-		//	await Windows.System.Launcher.LaunchUriAsync(uriBing);
-		//}
 	}
 }

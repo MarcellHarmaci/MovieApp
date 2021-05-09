@@ -96,15 +96,26 @@
     <Compile Include="Models\Ids.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieDetails.cs" />
+    <Compile Include="Models\MovieSearchResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\MovieService.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MovieDetailsPageViewModel.cs" />
+    <Compile Include="ViewModels\SearchMoviesPageViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MovieDetailsPage.xaml.cs">
       <DependentUpon>MovieDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchMoviesPage.xaml.cs">
+      <DependentUpon>SearchMoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchPeoplePage.xaml.cs">
+      <DependentUpon>SearchPeoplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchShowsPage.xaml.cs">
+      <DependentUpon>SearchShowsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +150,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MovieDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SearchMoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SearchPeoplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SearchShowsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
