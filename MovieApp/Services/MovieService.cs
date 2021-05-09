@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using MovieApp.Models;
+using System.Collections.ObjectModel;
 
 namespace MovieApp.Services
 {
@@ -66,6 +67,31 @@ namespace MovieApp.Services
 			string relativeUri = $"movies/{movieSlug}?extended=full";
 			Uri uri = new Uri(serverUrl, relativeUri);
 			return await GetAsync<MovieDetails>(uri);
+		}
+
+		public async Task<MovieDetails> GetSimilarMoviesAsync(string movieSlug)
+		{
+			string relativeUri = $"movies/{movieSlug}?extended=full";
+			Uri uri = new Uri(serverUrl, relativeUri);
+			return await GetAsync<MovieDetails>(uri);
+		}
+
+		public async Task<List<Movie>> GetMovieSearchResultsAsync(string searchTerm)
+		{
+			string relativeUri = $"search/movie?query={searchTerm}";
+			Uri uri = new Uri(serverUrl, relativeUri);
+			var searchResults = await GetAsync<List<MovieSearchResult>>(uri);
+
+			var movies = new List<Movie>();
+			if (searchResults.Count != 0)
+			{
+				foreach (MovieSearchResult result in searchResults)
+				{
+					movies.Add(result.Movie);
+				}
+			}
+
+			return movies;
 		}
 
 	}
