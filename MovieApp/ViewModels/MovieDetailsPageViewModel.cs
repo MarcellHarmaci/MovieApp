@@ -30,7 +30,7 @@ namespace MovieApp.ViewModels
 				}
 				catch(NullReferenceException ex)
 				{
-					return "<number>";
+					return "<length>";
 				}
 			}
 		}
@@ -45,6 +45,9 @@ namespace MovieApp.ViewModels
 			var service = new MovieService();
 			MovieDetails = await service.GetMovieDetailsAsync(slug);
 			RaisePropertyChanged(() => MovieDetails);
+
+			var imageService = new ImageService();
+			await imageService.GetMovieImageAsync("tt1285016");
 
 			await base.OnNavigatedToAsync(parameter, mode, state);
 		}

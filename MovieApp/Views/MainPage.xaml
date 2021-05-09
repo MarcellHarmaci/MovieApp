@@ -27,47 +27,44 @@
 
 		<Grid>
 			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="auto"/>
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="auto"/>
 			</Grid.ColumnDefinitions>
-			
-			<TextBox Grid.Column="0" 
+
+			<ComboBox Grid.Column="0" Margin="12,6,0,6" Width="120" Height="34" PlaceholderText="Type"
+					  ItemsSource="{Binding SearchCategories}"
+					  SelectionChanged="ComboBox_SelectionChaged">
+				<x:String>Movies</x:String>
+				<x:String>Shows</x:String>
+				<x:String>People</x:String>
+			</ComboBox>
+
+			<TextBox Grid.Column="1" Name="TextBox_SearchTerm"
 					 PlaceholderText="What to watch today?" 
 					 Text="{Binding SearchTerm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-					 KeyDown="TextBox_Search_OnKeyDown"
-					 Margin="12,6,12,6"/>
-			
-			<Button Grid.Column="1" Content="Search" Click="SearchButton_Click"
-					Background="LightGray" Margin="0,6,12,6"/>
-			
+					 KeyDown="TextBox_Search_OnKeyDown" VerticalAlignment="Stretch"	
+					 Margin="6"/>
+
+			<Button Grid.Column="2" Content="Search" Click="SearchButton_Click" Width="120"
+					Background="LightGray" Margin="0,6,12,6" VerticalAlignment="Stretch"/>
+
 		</Grid>
 
 		<Grid Margin="12,0,12,0">
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="auto"/>
 				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="auto"/>
-				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="auto"/>
-				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="auto"/>
 			</Grid.ColumnDefinitions>
 
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
 
-			<CheckBox Grid.Row="0" Grid.Column="0" Content="Movies" Background="LightGray" Margin="0,6,0,6"/>
-			<CheckBox Grid.Row="0" Grid.Column="2" Content="Movies" Background="LightGray" Margin="0,6,0,6"/>
-			<CheckBox Grid.Row="0" Grid.Column="4" Content="Movies" Background="LightGray" Margin="0,6,0,6"/>
-			<CheckBox Grid.Row="0" Grid.Column="6" Content="Movies" Background="LightGray" Margin="0,6,0,6"/>
-
-			<TextBlock Grid.Row="1" Grid.ColumnSpan="7" Text="Popular movies" 
+			<TextBlock Grid.Row="0" Text="Popular movies" 
 					   HorizontalTextAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}"/>
 
-			<ListView Grid.Row="2" Grid.ColumnSpan="7" Height="544"
+			<ListView Grid.Row="1" Height="544" HorizontalAlignment="Center"
 					  ItemsSource="{x:Bind ViewModel.PopularMovies}"
 					  IsItemClickEnabled="True"
 					  ItemClick="PopularMovies_OnItemClick">
@@ -75,6 +72,7 @@
 				<ListView.ItemContainerStyle>
 					<Style TargetType="ListViewItem">
 						<Setter Property="HorizontalAlignment" Value="Center"/>
+						<Setter Property="VerticalAlignment" Value="Center"/>
 					</Style>
 				</ListView.ItemContainerStyle>
 
@@ -86,13 +84,14 @@
 								<RowDefinition Height="auto"/>
 								<RowDefinition Height="auto"/>
 							</Grid.RowDefinitions>
-							
-							<TextBlock Grid.Row="0" Text="{x:Bind Title}" HorizontalAlignment="Center"
-										Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
 
-							<TextBlock Grid.Row="1" Text="{x:Bind Year}" HorizontalAlignment="Center"
-										Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+							<TextBlock Grid.Row="0" Text="{x:Bind Title}" 
+									   HorizontalAlignment="Center" HorizontalTextAlignment="Center"
+									   Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
 
+							<TextBlock Grid.Row="1" Text="{x:Bind Year}" 
+									   HorizontalAlignment="Center" HorizontalTextAlignment="Center"
+									   Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
 						</Grid>
 
 					</DataTemplate>
@@ -119,6 +118,5 @@
 		</Grid>
 
 	</StackPanel>
-
 </Page>
 

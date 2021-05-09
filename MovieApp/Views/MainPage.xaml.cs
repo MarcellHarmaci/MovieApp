@@ -32,5 +32,11 @@ namespace MovieApp.Views
             ViewModel.NavigateToMovieDetails(movie.Ids.slug);
         }
 
+        private void ComboBox_SelectionChaged(object sender, SelectionChangedEventArgs e)
+        {
+            string searchCategory = e.AddedItems[0].ToString();
+            ViewModel.SearchCategory = searchCategory;
+        }
+
     }
 }

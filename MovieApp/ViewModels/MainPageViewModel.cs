@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using MovieApp.Services;
 using System.ComponentModel;
 using MovieApp.Views;
+using Windows.UI.Xaml.Controls;
 
 namespace MovieApp.ViewModels
 {
@@ -18,6 +19,7 @@ namespace MovieApp.ViewModels
 		public ObservableCollection<Movie> PopularMovies { get; set; } =
 			new ObservableCollection<Movie>();
 
+		public string SearchCategory { get; set; }
 		public string SearchTerm { get; set; }
 
 		public int currentPage = 1;
@@ -35,7 +37,7 @@ namespace MovieApp.ViewModels
 				}
 			}
 		}
-		
+
 		private readonly int PageLimit = 10;
 
 		public string PagingString
@@ -50,7 +52,7 @@ namespace MovieApp.ViewModels
 
 		public bool IsNextPageAvailable
 		{
-			get { return CurrentPage < 10; }
+			get { return CurrentPage < PageLimit; }
 		}
 
 		public override async Task OnNavigatedToAsync(
@@ -66,11 +68,10 @@ namespace MovieApp.ViewModels
 
 		public async Task LoadCurrentPage()
 		{
-			PopularMovies.Clear();
-
 			var service = new MovieService();
 			var movies = await service.GetPopularMoviesAsync(true, CurrentPage, PageLimit);
 
+			PopularMovies.Clear();
 			foreach (var item in movies)
 			{
 				PopularMovies.Add(item);
@@ -88,7 +89,7 @@ namespace MovieApp.ViewModels
 
 		public async Task NextPage()
 		{
-			if (CurrentPage < 10)
+			if (CurrentPage < PageLimit)
 			{
 				CurrentPage++;
 				await LoadCurrentPage();
@@ -97,7 +98,38 @@ namespace MovieApp.ViewModels
 
 		public void Search()
 		{
-			System.Diagnostics.Debug.WriteLine($"Searching by term: {SearchTerm}");
+			if (ValidateString(SearchTerm) && ValidateString(SearchTerm))
+			{
+				switch (SearchCategory)
+				{
+					case "Movies":
+					{
+						NavigationService.Navigate(typeof(SearchMoviesPage), SearchTerm);
+						break;
+					}
+					case "Shows":
+					{
+						NavigationService.Navigate(typeof(SearchShowsPage), SearchTerm);
+						break;
+					}
+					case "People":
+					{
+						NavigationService.Navigate(typeof(SearchPeoplePage), SearchTerm);
+						break;
+					}
+					default:
+					{
+						System.Diagnostics.Debug.WriteLine($"Cannot search by term {SearchTerm} in {SearchCategory}");
+						break;
+					}
+				}
+			}
+			else System.Diagnostics.Debug.WriteLine($"Invalid state to search");
+		}
+
+		private bool ValidateString(string value)
+		{
+			return value != null && value != "";
 		}
 
 		internal void NavigateToMovieDetails(string movieSlug)
@@ -106,5 +138,6 @@ namespace MovieApp.ViewModels
 		}
 
 	}
+
 }
 
