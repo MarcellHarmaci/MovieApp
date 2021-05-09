@@ -94,5 +94,41 @@ namespace MovieApp.Services
 			return movies;
 		}
 
+		public async Task<List<Show>> GetShowSearchResultsAsync(string searchTerm)
+		{
+			string relativeUri = $"search/show?query={searchTerm}";
+			Uri uri = new Uri(serverUrl, relativeUri);
+			var searchResults = await GetAsync<List<ShowSearchResult>>(uri);
+
+			var shows = new List<Show>();
+			if (searchResults.Count != 0)
+			{
+				foreach (ShowSearchResult result in searchResults)
+				{
+					shows.Add(result.Show);
+				}
+			}
+
+			return shows;
+		}
+
+		public async Task<List<Person>> GetPersonSearchResultsAsync(string searchTerm)
+		{
+			string relativeUri = $"search/person?query={searchTerm}";
+			Uri uri = new Uri(serverUrl, relativeUri);
+			var searchResults = await GetAsync<List<PersonSearchResult>>(uri);
+
+			var people = new List<Person>();
+			if (searchResults.Count != 0)
+			{
+				foreach (PersonSearchResult result in searchResults)
+				{
+					people.Add(result.Person);
+				}
+			}
+
+			return people;
+		}
+
 	}
 }
