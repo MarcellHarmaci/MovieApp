@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Template10.Mvvm;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 
 namespace MovieApp.ViewModels
@@ -17,6 +18,23 @@ namespace MovieApp.ViewModels
 
 		public ObservableCollection<Show> Shows { get; set; } =
 			new ObservableCollection<Show>();
+
+		public Visibility NoResultTextVisibility
+		{
+			get
+			{
+				if (Shows.Count > 0)
+				{
+					System.Diagnostics.Debug.WriteLine("Visible");
+					return Visibility.Visible;
+				}
+				else
+				{
+					System.Diagnostics.Debug.WriteLine("Collapsed");
+					return Visibility.Collapsed;
+				}
+			}
+		}
 
 		private string searchTerm = "<Search term>";
 		public string SearchTerm
@@ -44,6 +62,7 @@ namespace MovieApp.ViewModels
 			{
 				Shows.Add(show);
 			}
+			RaisePropertyChanged(() => NoResultTextVisibility);
 
 			await base.OnNavigatedToAsync(parameter, mode, state);
 		}

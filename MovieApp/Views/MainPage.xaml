@@ -40,11 +40,10 @@
 				<x:String>People</x:String>
 			</ComboBox>
 
-			<TextBox Grid.Column="1" Name="TextBox_SearchTerm"
-					 PlaceholderText="What to watch today?" 
+			<TextBox Grid.Column="1" Name="TextBox_SearchTerm" Margin="6"
+					 PlaceholderText="Search MovieApp" 
 					 Text="{Binding SearchTerm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-					 KeyDown="TextBox_Search_OnKeyDown" VerticalAlignment="Stretch"	
-					 Margin="6"/>
+					 KeyDown="TextBox_Search_OnKeyDown" VerticalAlignment="Stretch"	/>
 
 			<Button Grid.Column="2" Content="Search" Click="SearchButton_Click" Width="120"
 					Background="LightGray" Margin="0,6,12,6" VerticalAlignment="Stretch"/>

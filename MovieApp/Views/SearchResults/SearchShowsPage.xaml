@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
 	xmlns:local="using:MovieApp.Views"
-	xmlns:vm="using:MovieApp.ViewModels"
+	xmlns:vm="using:MovieApp.ViewModels.SearchResults"
 	xmlns:model="using:MovieApp.Models"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -19,7 +19,10 @@
 				   Style="{ThemeResource BaseTextBlockStyle}"
 				   Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
 
-		<ListView ItemsSource="{Binding Shows}" Height="544"
+		<TextBlock Text="No results. Try searching for somathing else!"
+				   Visibility="{Binding ViewModel.NoResultTextVisibility }" />
+
+		<ListView x:Name="ListView" ItemsSource="{Binding Shows}" Height="544"
 				  IsItemClickEnabled="True" 
 				  ItemClick="ShowListItem_OnItemClick">
 
@@ -44,7 +47,7 @@
 
 				</DataTemplate>
 			</ListView.ItemTemplate>
-
 		</ListView>
+
 	</StackPanel>
 </Page>

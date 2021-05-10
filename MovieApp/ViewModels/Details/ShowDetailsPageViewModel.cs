@@ -33,7 +33,6 @@ namespace MovieApp.ViewModels.Details
 			var slug = (string)parameter;
 			var service = new MovieService();
 			ShowDetails = await service.GetShowDetailsAsync(slug);
-			RaisePropertyChanged(() => ShowDetails);
 
 			await base.OnNavigatedToAsync(parameter, mode, state);
 		}

@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:local="using:MovieApp.Views"
-	xmlns:vm="using:MovieApp.ViewModels"
+	xmlns:vm="using:MovieApp.ViewModels.Details"
 	xmlns:model="using:MovieApp.Models"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
