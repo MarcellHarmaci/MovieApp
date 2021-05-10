@@ -1,5 +1,6 @@
 ﻿using MovieApp.Models;
 using MovieApp.Services;
+using MovieApp.Views.Details;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -49,7 +50,7 @@ namespace MovieApp.ViewModels
 
 		internal void NavigateToShowDetails(string slug)
 		{
-			//NavigationService.Navigate(typeof(ShowDetailsPage), slug);
+			NavigationService.Navigate(typeof(ShowDetailsPage), slug);
 		}
 
 	}

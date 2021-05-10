@@ -107,24 +107,28 @@
     <Compile Include="Models\SocialIds.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\MovieService.cs" />
+    <Compile Include="ViewModels\Details\ShowDetailsPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
-    <Compile Include="ViewModels\MovieDetailsPageViewModel.cs" />
-    <Compile Include="ViewModels\SearchMoviesPageViewModel.cs" />
-    <Compile Include="ViewModels\SearchPeoplePageViewModel.cs" />
-    <Compile Include="ViewModels\SearchShowsPageViewModel.cs" />
+    <Compile Include="ViewModels\Details\MovieDetailsPageViewModel.cs" />
+    <Compile Include="ViewModels\SearchResults\SearchMoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\SearchResults\SearchPeoplePageViewModel.cs" />
+    <Compile Include="ViewModels\SearchResults\SearchShowsPageViewModel.cs" />
+    <Compile Include="Views\Details\ShowDetailsPage.xaml.cs">
+      <DependentUpon>ShowDetailsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MovieDetailsPage.xaml.cs">
+    <Compile Include="Views\Details\MovieDetailsPage.xaml.cs">
       <DependentUpon>MovieDetailsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SearchMoviesPage.xaml.cs">
+    <Compile Include="Views\SearchResults\SearchMoviesPage.xaml.cs">
       <DependentUpon>SearchMoviesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SearchPeoplePage.xaml.cs">
+    <Compile Include="Views\SearchResults\SearchPeoplePage.xaml.cs">
       <DependentUpon>SearchPeoplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SearchShowsPage.xaml.cs">
+    <Compile Include="Views\SearchResults\SearchShowsPage.xaml.cs">
       <DependentUpon>SearchShowsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -155,23 +159,27 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
+    <Page Include="Views\Details\ShowDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MovieDetailsPage.xaml">
+    <Page Include="Views\Details\MovieDetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SearchMoviesPage.xaml">
+    <Page Include="Views\SearchResults\SearchMoviesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SearchPeoplePage.xaml">
+    <Page Include="Views\SearchResults\SearchPeoplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SearchShowsPage.xaml">
+    <Page Include="Views\SearchResults\SearchShowsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -190,6 +198,7 @@
       <Version>1.1.12</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
