@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieApp.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,12 @@ namespace MovieApp.Views
 		public SearchPeoplePage()
 		{
 			this.InitializeComponent();
+		}
+
+		private void PersonListItem_OnItemClick(object sender, ItemClickEventArgs e)
+		{
+			var person = (Person)e.ClickedItem;
+			ViewModel.NavigateToPersonDetails(person.Ids.Slug);
 		}
 	}
 }
