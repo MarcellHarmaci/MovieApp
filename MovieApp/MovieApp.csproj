@@ -98,14 +98,20 @@
     <Compile Include="Models\MovieDetails.cs" />
     <Compile Include="Models\MovieSearchResult.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\PersonDetails.cs" />
     <Compile Include="Models\PersonSearchResult.cs" />
+    <Compile Include="Models\ProductionStaff.cs" />
     <Compile Include="Models\Show.cs" />
+    <Compile Include="Models\ShowDetails.cs" />
     <Compile Include="Models\ShowSearchResult.cs" />
+    <Compile Include="Models\SocialIds.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\MovieService.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MovieDetailsPageViewModel.cs" />
     <Compile Include="ViewModels\SearchMoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\SearchPeoplePageViewModel.cs" />
+    <Compile Include="ViewModels\SearchShowsPageViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

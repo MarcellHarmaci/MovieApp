@@ -62,28 +62,35 @@ namespace MovieApp.Services
 			return await GetAsync<List<Movie>>(uri);
 		}
 
-		public async Task<MovieDetails> GetMovieDetailsAsync(string movieSlug)
+		public async Task<MovieDetails> GetMovieDetailsAsync(string slug)
 		{
-			string relativeUri = $"movies/{movieSlug}?extended=full";
+			string relativeUri = $"movies/{slug}?extended=full";
 			Uri uri = new Uri(serverUrl, relativeUri);
 			return await GetAsync<MovieDetails>(uri);
 		}
 
-		public async Task<MovieDetails> GetSimilarMoviesAsync(string movieSlug)
+		public async Task<ShowDetails> GetShowDetailsAsync(string slug)
 		{
-			string relativeUri = $"movies/{movieSlug}?extended=full";
+			string relativeUri = $"shows/{slug}?extended=full";
 			Uri uri = new Uri(serverUrl, relativeUri);
-			return await GetAsync<MovieDetails>(uri);
+			return await GetAsync<ShowDetails>(uri);
+		}
+
+		public async Task<PersonDetails> GetPersonDetailsAsync(string slug)
+		{
+			string relativeUri = $"people/{slug}?extended=full";
+			Uri uri = new Uri(serverUrl, relativeUri);
+			return await GetAsync<PersonDetails>(uri);
 		}
 
 		public async Task<List<Movie>> GetMovieSearchResultsAsync(string searchTerm)
 		{
-			string relativeUri = $"search/movie?query={searchTerm}";
+			string relativeUri = $"search/movie?query=*{searchTerm}*";
 			Uri uri = new Uri(serverUrl, relativeUri);
 			var searchResults = await GetAsync<List<MovieSearchResult>>(uri);
 
 			var movies = new List<Movie>();
-			if (searchResults.Count != 0)
+			if (searchResults != null && searchResults.Count != 0)
 			{
 				foreach (MovieSearchResult result in searchResults)
 				{
@@ -96,12 +103,12 @@ namespace MovieApp.Services
 
 		public async Task<List<Show>> GetShowSearchResultsAsync(string searchTerm)
 		{
-			string relativeUri = $"search/show?query={searchTerm}";
+			string relativeUri = $"search/show?query=*{searchTerm}*";
 			Uri uri = new Uri(serverUrl, relativeUri);
 			var searchResults = await GetAsync<List<ShowSearchResult>>(uri);
 
 			var shows = new List<Show>();
-			if (searchResults.Count != 0)
+			if (searchResults != null && searchResults.Count != 0)
 			{
 				foreach (ShowSearchResult result in searchResults)
 				{
@@ -114,12 +121,12 @@ namespace MovieApp.Services
 
 		public async Task<List<Person>> GetPersonSearchResultsAsync(string searchTerm)
 		{
-			string relativeUri = $"search/person?query={searchTerm}";
+			string relativeUri = $"search/person?query=*{searchTerm}*";
 			Uri uri = new Uri(serverUrl, relativeUri);
 			var searchResults = await GetAsync<List<PersonSearchResult>>(uri);
 
 			var people = new List<Person>();
-			if (searchResults.Count != 0)
+			if (searchResults != null && searchResults.Count != 0)
 			{
 				foreach (PersonSearchResult result in searchResults)
 				{
@@ -128,6 +135,29 @@ namespace MovieApp.Services
 			}
 
 			return people;
+		}
+
+		public async Task<MovieDetails> GetSimilarMoviesAsync(string slug)
+		{
+			string relativeUri = $"movies/{slug}?extended=full";
+			Uri uri = new Uri(serverUrl, relativeUri);
+			return await GetAsync<MovieDetails>(uri);
+		}
+
+		public async Task<ProductionStaff> GetPeopleOfMovieAsync(string slug)
+		{
+			string relativeUri = $"movies/{slug}/poeple";
+			Uri uri = new Uri(serverUrl, relativeUri);
+			var staff = await GetAsync<ProductionStaff>(uri);
+
+			return staff;
+		}
+
+		public async Task<ProductionStaff> GetPeopleOfShowAsync(string slug)
+		{
+			string relativeUri = $"shows/{slug}/poeple";
+			Uri uri = new Uri(serverUrl, relativeUri);
+			return await GetAsync<ProductionStaff>(uri);
 		}
 
 	}
