@@ -42,16 +42,14 @@ namespace MovieApp.ViewModels
 			foreach(Movie movie in result)
 			{
 				Movies.Add(movie);
-				System.Diagnostics.Debug.WriteLine(movie.Title);
-				System.Diagnostics.Debug.WriteLine(movie.Year);
 			}
 
 			await base.OnNavigatedToAsync(parameter, mode, state);
 		}
 
-		internal void NavigateToMovieDetails(string movieSlug)
+		internal void NavigateToMovieDetails(string slug)
 		{
-			NavigationService.Navigate(typeof(MovieDetailsPage), movieSlug);
+			NavigationService.Navigate(typeof(MovieDetailsPage), slug);
 		}
 	}
 }

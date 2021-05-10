@@ -29,7 +29,7 @@ namespace MovieApp.Views
         private void PopularMovies_OnItemClick(object sender, ItemClickEventArgs e)
         {
             var movie = (Movie)e.ClickedItem;
-            ViewModel.NavigateToMovieDetails(movie.Ids.slug);
+            ViewModel.NavigateToMovieDetails(movie.Ids.Slug);
         }
 
         private void ComboBox_SelectionChaged(object sender, SelectionChangedEventArgs e)
