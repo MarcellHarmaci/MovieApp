@@ -12,8 +12,8 @@
 	<Page.DataContext>
 		<vm:PersonDetailsPageViewModel x:Name="ViewModel" />
 	</Page.DataContext>
-	
-    <Grid Margin="16">
+
+	<Grid Margin="34">
 
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="auto"/>

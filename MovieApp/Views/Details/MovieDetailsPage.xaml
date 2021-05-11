@@ -85,7 +85,7 @@
 		<TextBlock Grid.Row="8" Grid.Column="1" Text="{Binding MovieDetails.Votes}" 
 				HorizontalTextAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}"/>
 
-		<TextBlock Grid.Row="9" Grid.Column="0"  FontSize="20" Margin="0,16,0,8" 
+		<TextBlock Grid.Row="9" Grid.Column="0" FontSize="20" Margin="0,16,0,8" 
 				   Text="Cast" HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
 
 		<ListView Grid.Row="10" Grid.ColumnSpan="2"

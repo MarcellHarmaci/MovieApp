@@ -35,9 +35,6 @@ namespace MovieApp.ViewModels.Details
 			}
 		}
 
-		public ObservableCollection<ProductionStaff> Staff { get; set; } =
-			new ObservableCollection<ProductionStaff>();
-
 		public string MovieLength { 
 			get {
 				if (MovieDetails != null)

@@ -93,6 +93,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Episode.cs" />
     <Compile Include="Models\Ids.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieDetails.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Models\PersonDetails.cs" />
     <Compile Include="Models\PersonSearchResult.cs" />
     <Compile Include="Models\ProductionStaff.cs" />
+    <Compile Include="Models\SeasonDetails.cs" />
     <Compile Include="Models\Show.cs" />
     <Compile Include="Models\ShowDetails.cs" />
     <Compile Include="Models\ShowSearchResult.cs" />

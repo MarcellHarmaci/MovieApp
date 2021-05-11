@@ -167,5 +167,19 @@ namespace MovieApp.Services
 			return await GetAsync<ProductionStaff>(uri);
 		}
 
+		public async Task<SeasonDetails> GetSeasonsOfShowAsync(string slug)
+		{
+			string relativeUri = $"shows/{slug}/seasons?extended=full";
+			Uri uri = new Uri(serverUrl, relativeUri);
+			return await GetAsync<SeasonDetails>(uri);
+		}
+
+		public async Task<Episode> GetEpisodesOfSeasonAsync(string slug, int season, int episode)
+		{
+			string relativeUri = $"shows/{slug}/seasons/{season}/episodes/{episode}";
+			Uri uri = new Uri(serverUrl, relativeUri);
+			return await GetAsync<Episode>(uri);
+		}
+
 	}
 }

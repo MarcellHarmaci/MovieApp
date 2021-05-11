@@ -12,14 +12,15 @@
 	<Page.DataContext>
 		<vm:ShowDetailsPageViewModel x:Name="ViewModel" />
 	</Page.DataContext>
-	
-    <Grid Margin="16">
+
+	<Grid Margin="34">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="auto"/>
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
 
 		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
@@ -63,5 +64,18 @@
 		<TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding ShowDetails.Trailer}" 
 				   HorizontalTextAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}"/>
 
+		<TextBlock Grid.Row="7" Grid.Column="0" FontSize="20" Margin="0,16,0,8" 
+				   Text="Episodes" HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
+
+		<ListView Grid.Row="8" Grid.ColumnSpan="2">
+			<ListView.ItemTemplate>
+				<DataTemplate x:DataType="">
+					<StackPanel>
+						
+					</StackPanel>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+		
 	</Grid>
 </Page>
