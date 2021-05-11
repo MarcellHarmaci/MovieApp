@@ -36,7 +36,7 @@ namespace MovieApp.ViewModels.SearchResults
 		)
 		{
 			SearchTerm = (string)parameter;
-			var service = new MovieService();
+			var service = new PersonService();
 			var result = await service.GetPersonSearchResultsAsync(searchTerm);
 
 			People.Clear();

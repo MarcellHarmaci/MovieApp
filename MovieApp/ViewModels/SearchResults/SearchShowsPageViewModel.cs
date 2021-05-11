@@ -48,15 +48,15 @@ namespace MovieApp.ViewModels.SearchResults
 		)
 		{
 			SearchTerm = (string)parameter;
-			var service = new MovieService();
+			var service = new ShowService();
 			var result = await service.GetShowSearchResultsAsync(searchTerm);
 
 			Shows.Clear();
 			foreach (Show show in result)
 			{
 				Shows.Add(show);
+				RaisePropertyChanged(() => NoResultTextVisibility);
 			}
-			RaisePropertyChanged(() => NoResultTextVisibility);
 
 			await base.OnNavigatedToAsync(parameter, mode, state);
 		}

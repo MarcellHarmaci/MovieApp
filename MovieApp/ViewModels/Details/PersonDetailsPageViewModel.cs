@@ -31,7 +31,7 @@ namespace MovieApp.ViewModels.Details
 		)
 		{
 			var slug = (string)parameter;
-			var service = new MovieService();
+			var service = new PersonService();
 			PersonDetails = await service.GetPersonDetailsAsync(slug);
 
 			await base.OnNavigatedToAsync(parameter, mode, state);

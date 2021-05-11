@@ -35,7 +35,7 @@ namespace MovieApp.ViewModels.Details
 		)
 		{
 			var slug = (string)parameter;
-			var service = new MovieService();
+			var service = new ShowService();
 			
 			ShowDetails = await service.GetShowDetailsAsync(slug);
 			var seasonsResult = await service.GetSeasonsOfShowAsync(slug);

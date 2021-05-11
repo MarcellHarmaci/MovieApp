@@ -72,6 +72,7 @@ namespace MovieApp.Models
 
 	public class Cast
 	{
+		public string Character { get; set; }
 		public string[] Characters { get; set; }
 		public Person Person { get; set; }
 	}
