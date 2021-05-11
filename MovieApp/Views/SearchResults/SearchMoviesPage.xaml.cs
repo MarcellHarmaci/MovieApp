@@ -31,7 +31,7 @@ namespace MovieApp.Views
 		private void MovieListItem_OnItemClick(object sender, ItemClickEventArgs e)
 		{
 			var movie = (Movie)e.ClickedItem;
-			//ViewModel.NavigateToMovieDetails(movie.Ids.Slug);
+			ViewModel.NavigateToMovieDetails(movie.Ids.Slug);
 		}
 		
 	}

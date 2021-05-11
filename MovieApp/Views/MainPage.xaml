@@ -32,9 +32,8 @@
 				<ColumnDefinition Width="auto"/>
 			</Grid.ColumnDefinitions>
 
-			<ComboBox Grid.Column="0" Margin="12,6,0,6" Width="120" Height="34" PlaceholderText="Type"
-					  ItemsSource="{Binding SearchCategories}"
-					  SelectionChanged="ComboBox_SelectionChaged">
+			<ComboBox Grid.Column="0" Margin="12,6,0,6" Width="120" Height="34" 
+					  SelectionChanged="ComboBox_SelectionChaged" PlaceholderText="Type">
 				<x:String>Movies</x:String>
 				<x:String>Shows</x:String>
 				<x:String>People</x:String>

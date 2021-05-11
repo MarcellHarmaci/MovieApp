@@ -31,7 +31,7 @@ namespace MovieApp.Views
 		private void ShowListItem_OnItemClick(object sender, ItemClickEventArgs e)
 		{
 			var show = (Show)e.ClickedItem;
-			//ViewModel.NavigateToShowDetails(show.Ids.Slug);
+			ViewModel.NavigateToShowDetails(show.Ids.Slug);
 		}
 	}
 }

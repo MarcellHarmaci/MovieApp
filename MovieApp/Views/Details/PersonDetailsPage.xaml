@@ -35,5 +35,34 @@
 				   Style="{ThemeResource HeaderTextBlockStyle}"
 				   Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
 
+		<TextBlock Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,20"
+				   Text="{Binding PersonDetails.Biography}" HorizontalTextAlignment="Justify" 
+				   Style="{ThemeResource BodyTextBlockStyle}"/>
+
+		<TextBlock Grid.Row="2" Grid.Column="0" Text="Wikipedia" Margin="0,0,16,4"
+				   HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
+		<TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PersonDetails.SocialIds.Wikipedia}" 
+				   HorizontalTextAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}"/>
+
+		<TextBlock Grid.Row="3" Grid.Column="0" Text="Birthplace" Margin="0,0,16,4"
+				   HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
+		<TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding PersonDetails.Birthplace}" 
+				   HorizontalTextAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}"/>
+
+		<TextBlock Grid.Row="4" Grid.Column="0" Text="Birthday" Margin="0,0,16,4"
+				   HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
+		<TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding PersonDetails.Birthday}" 
+				   HorizontalTextAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}"/>
+
+		<TextBlock Grid.Row="5" Grid.Column="0" Text="Death" Margin="0,0,16,4"
+				   HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
+		<TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding PersonDetails.Death}" 
+				   HorizontalTextAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}"/>
+
+		<TextBlock Grid.Row="6" Grid.Column="0" Text="Twitter handle" Margin="0,0,16,4"
+				   HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
+		<TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding PersonDetails.SocialIds.Twitter}" 
+				   HorizontalTextAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}"/>
+		
 	</Grid>
 </Page>
