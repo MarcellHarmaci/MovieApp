@@ -46,8 +46,6 @@ namespace MovieApp.Services
 					json = await response.Content.ReadAsStringAsync();
 					T result = JsonConvert.DeserializeObject<T>(json);
 
-					System.Diagnostics.Debug.WriteLine(json);
-
 					return result;
 				}
 				catch (Exception ex)

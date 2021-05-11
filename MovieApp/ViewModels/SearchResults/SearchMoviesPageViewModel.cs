@@ -1,6 +1,6 @@
 ﻿using MovieApp.Models;
 using MovieApp.Services;
-using MovieApp.Views;
+using MovieApp.Views.Details;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+	xmlns:model="using:MovieApp.Models"
 	xmlns:vm="using:MovieApp.ViewModels.Details"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -13,7 +14,7 @@
 		<vm:PersonDetailsPageViewModel x:Name="ViewModel" />
 	</Page.DataContext>
 
-	<Grid Margin="34">
+	<Grid Margin="34,34,34,0">
 
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="auto"/>
@@ -21,6 +22,7 @@
 		</Grid.ColumnDefinitions>
 
 		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
@@ -57,6 +59,26 @@
 				   HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
 		<TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding PersonDetails.SocialIds.Twitter}" 
 				   HorizontalTextAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}"/>
-		
+
+		<Grid Grid.Row="6" Grid.Column="2">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+
+			<ListView Grid.Column="0" ScrollViewer.VerticalScrollMode="Enabled" 
+					  ItemsSource="{Binding MovieCredits}" 
+					  IsItemClickEnabled="True" ItemClick="Movie_OnItemClick">
+				<ListView.ItemTemplate>
+					<DataTemplate x:DataType="model:Cast">
+
+						<Grid>
+							
+						</Grid>
+						
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</Grid>
 	</Grid>
 </Page>

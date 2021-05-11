@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 using Template10.Mvvm;
 using Template10.Services.NavigationService;
 using Windows.UI.Xaml.Navigation;
-using MovieApp.Models;
 using System.Collections.ObjectModel;
-using MovieApp.Services;
 using System.ComponentModel;
-using MovieApp.Views;
 using Windows.UI.Xaml.Controls;
+using MovieApp.Models;
+using MovieApp.Services;
+using MovieApp.Views.Details;
+using MovieApp.Views.SearchResults;
 
 namespace MovieApp.ViewModels
 {
@@ -103,25 +104,25 @@ namespace MovieApp.ViewModels
 				switch (SearchCategory)
 				{
 					case "Movies":
-					{
-						NavigationService.Navigate(typeof(SearchMoviesPage), SearchTerm);
-						break;
-					}
+						{
+							NavigationService.Navigate(typeof(SearchMoviesPage), SearchTerm);
+							break;
+						}
 					case "Shows":
-					{
-						NavigationService.Navigate(typeof(SearchShowsPage), SearchTerm);
-						break;
-					}
+						{
+							NavigationService.Navigate(typeof(SearchShowsPage), SearchTerm);
+							break;
+						}
 					case "People":
-					{
-						NavigationService.Navigate(typeof(SearchPeoplePage), SearchTerm);
-						break;
-					}
+						{
+							NavigationService.Navigate(typeof(SearchPeoplePage), SearchTerm);
+							break;
+						}
 					default:
-					{
-						System.Diagnostics.Debug.WriteLine($"Cannot search by term {SearchTerm} in {SearchCategory}");
-						break;
-					}
+						{
+							System.Diagnostics.Debug.WriteLine($"Cannot search by term {SearchTerm} in {SearchCategory}");
+							break;
+						}
 				}
 			}
 			else System.Diagnostics.Debug.WriteLine($"Invalid state to search");

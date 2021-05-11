@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieApp.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,18 @@ namespace MovieApp.Views.Details
 		public PersonDetailsPage()
 		{
 			this.InitializeComponent();
+		}
+
+		private void Movie_OnItemClick(object sender, ItemClickEventArgs e)
+		{
+			var cast = (Cast)e.ClickedItem;
+			ViewModel.NavigateToMovieDetails(cast.Person.Ids.Slug);
+		}
+
+		private void Show_OnItemClick(object sender, ItemClickEventArgs e)
+		{
+			var cast = (Cast)e.ClickedItem;
+			ViewModel.NavigateToMovieDetails(cast.Person.Ids.Slug);
 		}
 	}
 }

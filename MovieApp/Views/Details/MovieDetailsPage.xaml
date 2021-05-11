@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="MovieApp.Views.MovieDetailsPage"
+    x:Class="MovieApp.Views.Details.MovieDetailsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MovieApp.Views"
@@ -102,15 +102,11 @@
 							<ColumnDefinition Width="200"/>
 							<ColumnDefinition Width="*"/>
 						</Grid.ColumnDefinitions>
-						<Grid.RowDefinitions>
-							<RowDefinition Height="auto"/>
-							<RowDefinition Height="auto"/>
-						</Grid.RowDefinitions>
 
-						<TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" 
+						<TextBlock Grid.Column="0" VerticalAlignment="Center" 
 								   Text="{Binding Person.Name}" Style="{ThemeResource BaseTextBlockStyle}"/>
 
-						<ListView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Characters}">
+						<ListView Grid.Column="1" ItemsSource="{Binding Characters}">
 							<ListView.ItemTemplate>
 								<DataTemplate>
 									<TextBlock Text="{Binding}" Style="{ThemeResource BodyTextBlockStyle}"/>
