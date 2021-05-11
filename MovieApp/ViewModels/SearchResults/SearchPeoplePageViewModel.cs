@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Template10.Mvvm;
 using Windows.UI.Xaml.Navigation;
 
-namespace MovieApp.ViewModels
+namespace MovieApp.ViewModels.SearchResults
 {
 	class SearchPeoplePageViewModel : ViewModelBase
 	{

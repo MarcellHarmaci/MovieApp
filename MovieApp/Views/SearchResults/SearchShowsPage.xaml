@@ -15,12 +15,12 @@
 	</Page.DataContext>
 
 	<StackPanel Margin="16">
-		<TextBlock Text="{Binding SearchTerm}" FontSize="18"
+		<TextBlock Text="{Binding SearchTerm}" FontSize="18" Margin="0,0,0,14"
 				   Style="{ThemeResource BaseTextBlockStyle}"
 				   Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
 
 		<TextBlock Text="No results. Try searching for somathing else!"
-				   Visibility="{Binding ViewModel.NoResultTextVisibility }" />
+				   Visibility="{Binding NoResultTextVisibility }" />
 
 		<ListView x:Name="ListView" ItemsSource="{Binding Shows}" Height="544"
 				  IsItemClickEnabled="True" 

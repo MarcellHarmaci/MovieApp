@@ -11,7 +11,7 @@ using Template10.Mvvm;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 
-namespace MovieApp.ViewModels
+namespace MovieApp.ViewModels.SearchResults
 {
 	class SearchShowsPageViewModel : ViewModelBase
 	{
@@ -24,15 +24,9 @@ namespace MovieApp.ViewModels
 			get
 			{
 				if (Shows.Count > 0)
-				{
-					System.Diagnostics.Debug.WriteLine("Visible");
-					return Visibility.Visible;
-				}
-				else
-				{
-					System.Diagnostics.Debug.WriteLine("Collapsed");
 					return Visibility.Collapsed;
-				}
+				else
+					return Visibility.Visible;
 			}
 		}
 
