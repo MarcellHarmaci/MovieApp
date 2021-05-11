@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+	xmlns:model="using:MovieApp.Models"
 	xmlns:vm="using:MovieApp.ViewModels.Details"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -20,6 +21,7 @@
 		</Grid.ColumnDefinitions>
 
 		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
@@ -65,13 +67,24 @@
 				   HorizontalTextAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}"/>
 
 		<TextBlock Grid.Row="7" Grid.Column="0" FontSize="20" Margin="0,16,0,8" 
-				   Text="Episodes" HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
+				   Text="Seasons and Episodes" HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
 
-		<ListView Grid.Row="8" Grid.ColumnSpan="2">
+		<ListView Grid.Row="8" Grid.ColumnSpan="2" ScrollViewer.VerticalScrollMode="Enabled" ItemsSource="{Binding Seasons}">
 			<ListView.ItemTemplate>
-				<DataTemplate x:DataType="">
+				<DataTemplate x:DataType="model:SeasonDetails">
 					<StackPanel>
-						
+						<TextBlock Margin="0,16,0,8" HorizontalTextAlignment="Left"
+								   Text="{Binding Title}" Style="{ThemeResource BaseTextBlockStyle}"/>
+
+						<ListView ItemsSource="{Binding Episodes}">
+							<ListView.ItemTemplate>
+								<DataTemplate x:DataType="model:Episode">
+									
+										<TextBlock Text="{Binding Title}" Style="{ThemeResource BodyTextBlockStyle}" Margin="16,0,0,0"/>
+									
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
 					</StackPanel>
 				</DataTemplate>
 			</ListView.ItemTemplate>

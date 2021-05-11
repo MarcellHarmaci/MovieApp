@@ -2,6 +2,7 @@
 using MovieApp.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,9 @@ namespace MovieApp.ViewModels.Details
 {
 	class ShowDetailsPageViewModel : ViewModelBase
 	{
+
+		public ObservableCollection<SeasonDetails> Seasons { get; set; } =
+			new ObservableCollection<SeasonDetails>();
 
 		private ShowDetails showDetails;
 		public ShowDetails ShowDetails
@@ -32,7 +36,19 @@ namespace MovieApp.ViewModels.Details
 		{
 			var slug = (string)parameter;
 			var service = new MovieService();
+			
 			ShowDetails = await service.GetShowDetailsAsync(slug);
+			var seasonsResult = await service.GetSeasonsOfShowAsync(slug);
+
+			foreach(SeasonDetails season in seasonsResult)
+			{
+				for (int ep = 1; ep < season.EpisodeCount; ep++)
+				{
+					var episode = await service.GetEpisodesOfSeasonAsync(ShowDetails.Ids.Slug, season.Number, ep);
+					season.Episodes.Add(episode);
+				}
+				Seasons.Add(season);
+			}
 
 			await base.OnNavigatedToAsync(parameter, mode, state);
 		}

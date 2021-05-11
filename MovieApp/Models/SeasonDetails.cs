@@ -12,7 +12,7 @@ namespace MovieApp.Models
 	{
 		public int Number { get; set; }
 		public Ids Ids { get; set; }
-		public int Rating { get; set; }
+		public double Rating { get; set; }
 		public int Votes { get; set; }
 
 		[JsonProperty("episode_count")]
@@ -29,6 +29,8 @@ namespace MovieApp.Models
 		[JsonProperty("updated_at")]
 		public string UdpatedAt { get; set; }
 		public string Network { get; set; }
+
+		public List<Episode> Episodes { get; set; } = new List<Episode>();
 	}
 
 }
