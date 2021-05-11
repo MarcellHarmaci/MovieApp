@@ -20,7 +20,7 @@
 				   Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
 
 		<TextBlock Text="No results. Try searching for somathing else!"
-				   Visibility="{Binding NoResultTextVisibility }" />
+				   Visibility="{Binding NoResultTextVisibility}" />
 
 		<ListView x:Name="ListView" ItemsSource="{Binding Shows}" Height="544"
 				  IsItemClickEnabled="True" 

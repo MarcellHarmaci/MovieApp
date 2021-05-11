@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieApp.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -27,9 +28,10 @@ namespace MovieApp.Views
 			this.InitializeComponent();
 		}
 
-		//private async void launchURI_Click(object sender, RoutedEventArgs e)
-		//{
-		//	ViewModel.OpenTrailer();
-		//}
+		private void Cast_OnItemClick(object sender, ItemClickEventArgs e)
+		{
+			var cast = (Cast)e.ClickedItem;
+			ViewModel.NavigateToPersonDetails(cast.Person.Ids.Slug);
+		}
 	}
 }

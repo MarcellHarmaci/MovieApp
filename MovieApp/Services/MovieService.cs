@@ -121,7 +121,7 @@ namespace MovieApp.Services
 
 		public async Task<List<Person>> GetPersonSearchResultsAsync(string searchTerm)
 		{
-			string relativeUri = $"search/person?query=*{searchTerm}*";
+			string relativeUri = $"search/person?query={searchTerm}*";
 			Uri uri = new Uri(serverUrl, relativeUri);
 			var searchResults = await GetAsync<List<PersonSearchResult>>(uri);
 
@@ -144,13 +144,20 @@ namespace MovieApp.Services
 			return await GetAsync<MovieDetails>(uri);
 		}
 
-		public async Task<ProductionStaff> GetPeopleOfMovieAsync(string slug)
+		public async Task<Cast[]> GetPeopleOfMovieAsync(string slug)
 		{
-			string relativeUri = $"movies/{slug}/poeple";
+			System.Diagnostics.Debug.WriteLine(slug);
+
+			string relativeUri = $"movies/{slug}/people";
 			Uri uri = new Uri(serverUrl, relativeUri);
+
+			System.Diagnostics.Debug.WriteLine(uri);
+
 			var staff = await GetAsync<ProductionStaff>(uri);
 
-			return staff;
+			System.Diagnostics.Debug.WriteLine(staff);
+
+			return staff.Cast;
 		}
 
 		public async Task<ProductionStaff> GetPeopleOfShowAsync(string slug)

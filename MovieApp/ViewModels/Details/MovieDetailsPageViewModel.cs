@@ -1,7 +1,9 @@
 ﻿using MovieApp.Models;
 using MovieApp.Services;
+using MovieApp.Views.Details;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +24,20 @@ namespace MovieApp.ViewModels.Details
 			}
 		}
 
+		private Cast[] cast;
+		public Cast[] Cast
+		{
+			get => cast;
+			set
+			{
+				cast = value;
+				RaisePropertyChanged(() => Cast);
+			}
+		}
+
+		public ObservableCollection<ProductionStaff> Staff { get; set; } =
+			new ObservableCollection<ProductionStaff>();
+
 		public string MovieLength { 
 			get {
 				if (MovieDetails != null)
@@ -39,9 +55,16 @@ namespace MovieApp.ViewModels.Details
 		{
 			var slug = (string)parameter;
 			var service = new MovieService();
+			
 			MovieDetails = await service.GetMovieDetailsAsync(slug);
+			Cast = await service.GetPeopleOfMovieAsync(slug);
 
 			await base.OnNavigatedToAsync(parameter, mode, state);
+		}
+
+		internal void NavigateToPersonDetails(string slug)
+		{
+			NavigationService.Navigate(typeof(PersonDetailsPage), slug);
 		}
 
 	}

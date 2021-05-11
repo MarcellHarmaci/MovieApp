@@ -6,14 +6,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+	xmlns:model="using:MovieApp.Models"
 	xmlns:vm="using:MovieApp.ViewModels.Details"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 	<Page.DataContext>
 		<vm:MovieDetailsPageViewModel x:Name="ViewModel" />
 	</Page.DataContext>
-	
-    <Grid Margin="16">
+
+	<Grid Margin="34">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="auto"/>
 			<ColumnDefinition Width="*"/>
@@ -30,8 +31,9 @@
 			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
+			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
-		
+
 		<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding MovieDetails.Title}" Margin="0,0,0,16" 
 				HorizontalTextAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}"/>
 
@@ -65,10 +67,8 @@
 
 		<TextBlock Grid.Row="5" Grid.Column="0" Text="Trailer" Margin="0,0,16,4"
 				HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
-		<TextBlock Grid.Row="5" Grid.Column="1" 
-				   Text="{Binding MovieDetails.Trailer}" 
-				HorizontalTextAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}">
-		</TextBlock>
+		<TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding MovieDetails.Trailer}" 
+				HorizontalTextAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}"/>
 
 		<TextBlock Grid.Row="6" Grid.Column="0" Text="Release date" Margin="0,0,16,4"
 				HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
@@ -79,11 +79,48 @@
 				HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
 		<TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding MovieDetails.Certification}" 
 				HorizontalTextAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}"/>
-		
+
 		<TextBlock Grid.Row="8" Grid.Column="0" Text="Rated by" Margin="0,0,16,4"
 				HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
 		<TextBlock Grid.Row="8" Grid.Column="1" Text="{Binding MovieDetails.Votes}" 
 				HorizontalTextAlignment="Left" Style="{ThemeResource BodyTextBlockStyle}"/>
 
+		<TextBlock Grid.Row="9" Grid.Column="0"  FontSize="20" Margin="0,16,0,8" 
+				   Text="Cast" HorizontalTextAlignment="Left" Style="{ThemeResource BaseTextBlockStyle}"/>
+
+		<ListView Grid.Row="10" Grid.ColumnSpan="2"
+                  ScrollViewer.VerticalScrollMode="Enabled"
+				  ItemsSource="{Binding Cast}"
+                  IsItemClickEnabled="True"
+                  ItemClick="Cast_OnItemClick">
+
+			<ListView.ItemTemplate>
+				<DataTemplate x:DataType="model:Cast">
+					
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="200"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="auto"/>
+							<RowDefinition Height="auto"/>
+						</Grid.RowDefinitions>
+
+						<TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" 
+								   Text="{Binding Person.Name}" Style="{ThemeResource BaseTextBlockStyle}"/>
+
+						<ListView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Characters}">
+							<ListView.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding}" Style="{ThemeResource BodyTextBlockStyle}"/>
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
+					</Grid>
+					
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
 	</Grid>
 </Page>

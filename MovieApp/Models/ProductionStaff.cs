@@ -29,7 +29,7 @@ namespace MovieApp.Models
 	{
 		public string[] Jobs { get; set; }
 		public Person Person { get; set; }
-		public string[] Job { get; set; }
+		public string Job { get; set; }
 	}
 
 	public class Art
@@ -54,7 +54,7 @@ namespace MovieApp.Models
 	{
 		public string[] Jobs { get; set; }
 		public Person Person { get; set; }
-		public string[] Job { get; set; }
+		public string Job { get; set; }
 	}
 
 	public class Sound
