@@ -20,6 +20,22 @@ namespace MovieApp.ViewModels
 		public ObservableCollection<Movie> PopularMovies { get; set; } =
 			new ObservableCollection<Movie>();
 
+		public ObservableCollection<string> GenreNames { get; set; } =
+			new ObservableCollection<string>();
+
+		private List<Genre> Genres = new List<Genre>();
+
+		public int selectedGenreIndex = 0;
+		public int SelectedGenreIndex 
+		{
+			get => selectedGenreIndex;
+			set
+			{
+				selectedGenreIndex = value;
+				_ = LoadCurrentPage();
+			}
+		}
+
 		public string SearchCategory { get; set; }
 		public string SearchTerm { get; set; }
 
@@ -32,9 +48,9 @@ namespace MovieApp.ViewModels
 				if (value > 0 && value <= 10)
 				{
 					currentPage = value;
-					RaisePropertyChanged(() => this.IsPrevPageAvailable);
-					RaisePropertyChanged(() => this.IsNextPageAvailable);
-					RaisePropertyChanged(() => this.PagingString);
+					RaisePropertyChanged(() => IsPrevPageAvailable);
+					RaisePropertyChanged(() => IsNextPageAvailable);
+					RaisePropertyChanged(() => PagingString);
 				}
 			}
 		}
@@ -62,6 +78,16 @@ namespace MovieApp.ViewModels
 			IDictionary<string, object> state
 		)
 		{
+			// Load available genres
+			var genreService = new GenreService();
+			Genres = await genreService.GetMovieGenresAsync();
+
+			foreach (Genre genre in Genres)
+			{
+				GenreNames.Add(genre.Name);
+			}
+
+			// Load popular movies of first available genre
 			await LoadCurrentPage();
 
 			await base.OnNavigatedToAsync(parameter, mode, state);
@@ -70,7 +96,7 @@ namespace MovieApp.ViewModels
 		public async Task LoadCurrentPage()
 		{
 			var service = new MovieService();
-			var movies = await service.GetPopularMoviesAsync(true, CurrentPage, PageLimit);
+			var movies = await service.GetPopularMoviesByGenreAsync(Genres[SelectedGenreIndex].Slug, true, CurrentPage, PageLimit);
 
 			PopularMovies.Clear();
 			foreach (var item in movies)

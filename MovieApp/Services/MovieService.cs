@@ -14,16 +14,19 @@ namespace MovieApp.Services
 	class MovieService : TraktService
 	{
 
-		public async Task<List<Movie>> GetPopularMoviesAsync(
+		public async Task<List<Movie>> GetPopularMoviesByGenreAsync(
+			string genreSlug,
 			bool withPagination = false,
 			int? page = null,
 			int? limit = null
 		)
 		{
-			string relativeUri = "movies/popular";
+			string relativeUri = $"movies/popular?genres={genreSlug}";
 
 			if (withPagination && page != null && limit != null)
-				relativeUri += $"?page={page}&limit={limit}";
+				relativeUri += $"&page={page}&limit={limit}";
+
+			System.Diagnostics.Debug.WriteLine(serverUrl + relativeUri);
 
 			Uri uri = new Uri(serverUrl, relativeUri);
 			return await GetAsync<List<Movie>>(uri);

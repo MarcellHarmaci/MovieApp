@@ -46,7 +46,6 @@
 
 			<Button Grid.Column="2" Content="Search" Click="SearchButton_Click" Width="120"
 					Background="LightGray" Margin="0,6,12,6" VerticalAlignment="Stretch"/>
-
 		</Grid>
 
 		<Grid Margin="12,0,12,0">
@@ -57,13 +56,27 @@
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
 
 			<TextBlock Grid.Row="0" Text="Popular movies" 
 					   HorizontalTextAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}"/>
 
-			<ListView Grid.Row="1" Height="544" HorizontalAlignment="Center"
-					  ItemsSource="{x:Bind ViewModel.PopularMovies}"
+			<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" 
+						BorderBrush="LightGray" BorderThickness="2" Padding="8" Margin="4">
+				<TextBlock Text="Select a genre" Margin="0,0,8,0" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}"/>
+				<ComboBox ItemsSource="{Binding GenreNames}" SelectedIndex="{Binding SelectedGenreIndex, Mode=TwoWay}" Width="160">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+			</StackPanel>
+			
+			
+			<ListView Grid.Row="2" Height="544" HorizontalAlignment="Center"
+					  ItemsSource="{Binding PopularMovies}"
 					  IsItemClickEnabled="True"
 					  ItemClick="PopularMovies_OnItemClick">
 
