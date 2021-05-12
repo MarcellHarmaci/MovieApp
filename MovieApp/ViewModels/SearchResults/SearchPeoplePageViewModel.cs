@@ -19,6 +19,9 @@ namespace MovieApp.ViewModels.SearchResults
 		public ObservableCollection<Person> People { get; set; } =
 			new ObservableCollection<Person>();
 
+		/// <summary>
+		/// No result text is only visible when the list of people is empty
+		/// </summary>
 		public Visibility NoResultTextVisibility
 		{
 			get
@@ -48,13 +51,16 @@ namespace MovieApp.ViewModels.SearchResults
 		)
 		{
 			SearchTerm = (string)parameter;
+
+			// Get search result
 			var service = new PersonService();
 			var result = await service.GetPersonSearchResultsAsync(searchTerm);
 
-			People.Clear();
 			foreach (Person person in result)
 			{
+				// Display new reuslt
 				People.Add(person);
+				// Update no result text visibility
 				RaisePropertyChanged(() => NoResultTextVisibility);
 			}
 

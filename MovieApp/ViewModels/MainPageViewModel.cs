@@ -93,6 +93,9 @@ namespace MovieApp.ViewModels
 			await base.OnNavigatedToAsync(parameter, mode, state);
 		}
 
+		/// <summary>
+		/// Loads popular movies in selected genre for the current page number.
+		/// </summary>
 		public async Task LoadCurrentPage()
 		{
 			var service = new MovieService();
@@ -105,6 +108,9 @@ namespace MovieApp.ViewModels
 			}
 		}
 
+		/// <summary>
+		/// Decrements current page selected if possible and reloads page accordingly.
+		/// </summary>
 		public async Task PrevPage()
 		{
 			if (CurrentPage > 1)
@@ -114,6 +120,9 @@ namespace MovieApp.ViewModels
 			}
 		}
 
+		/// <summary>
+		/// Increments current page selected if possible and reloads page accordingly.
+		/// </summary>
 		public async Task NextPage()
 		{
 			if (CurrentPage < PageLimit)
@@ -123,9 +132,12 @@ namespace MovieApp.ViewModels
 			}
 		}
 
+		/// <summary>
+		/// Searches for current search term in selected
+		/// </summary>
 		public void Search()
 		{
-			if (ValidateString(SearchTerm) && ValidateString(SearchTerm))
+			if (ValidateString(SearchCategory) && ValidateString(SearchTerm))
 			{
 				switch (SearchCategory)
 				{
@@ -159,6 +171,10 @@ namespace MovieApp.ViewModels
 			return value != null && value != "";
 		}
 
+		/// <summary>
+		/// Open movie details page for clicked movie
+		/// </summary>
+		/// <param name="movieSlug">Slug of movie</param>
 		internal void NavigateToMovieDetails(string movieSlug)
 		{
 			NavigationService.Navigate(typeof(MovieDetailsPage), movieSlug);

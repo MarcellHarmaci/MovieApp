@@ -22,7 +22,7 @@
 		<TextBlock Text="No results. Try searching for somathing else!"
 				   Visibility="{Binding NoResultTextVisibility}" />
 		
-		<ListView ItemsSource="{Binding Movies}" Height="544"
+		<ListView ItemsSource="{Binding Movies}"
 				  IsItemClickEnabled="True" 
 				  ItemClick="MovieListItem_OnItemClick">
 

@@ -11,9 +11,23 @@ namespace MovieApp.Services
 {
 	class TraktService
 	{
+		/// <summary>
+		/// Trakt API key
+		/// </summary>
 		protected readonly string traktApiKey;
+		/// <summary>
+		/// Trakt server base URL
+		/// </summary>
 		protected readonly Uri serverUrl;
 
+		/// <summary>
+		/// Initializes Trakt API key and server url from string resources.<br/>
+		/// String resoure names used: 
+		/// <list type="bullet">
+		/// <item>"TraktApiKey"</item>
+		/// <item>"TraktServerUri"</item>
+		/// </list>
+		/// </summary>
 		public TraktService()
 		{
 			if (Windows.UI.Core.CoreWindow.GetForCurrentThread() != null)
@@ -24,6 +38,13 @@ namespace MovieApp.Services
 			}
 		}
 
+		/// <summary>
+		/// Trakt Api GET method template.
+		/// Sets the necessary request headers and parses response json.
+		/// </summary>
+		/// <typeparam name="T">The type, to which the response json will be parsed</typeparam>
+		/// <param name="uri">Api endpoint URI to be called</param>
+		/// <returns>Api response persed to T template type</returns>
 		protected async Task<T> GetAsync<T>(Uri uri)
 		{
 			using (var httpClient = new HttpClient())
@@ -41,15 +62,22 @@ namespace MovieApp.Services
 					// Run GET method
 					var response = await httpClient.GetAsync(uri);
 					response.EnsureSuccessStatusCode();
-
-					// Convert json result
 					json = await response.Content.ReadAsStringAsync();
+
+					// Convert json result to return type
 					T result = JsonConvert.DeserializeObject<T>(json);
 
 					return result;
 				}
+				catch (JsonSerializationException ex)
+				{
+					System.Diagnostics.Debug.WriteLine($"Trakt API returned unexpected response json.");
+					System.Diagnostics.Debug.WriteLine($"Exception: {ex.StackTrace}\nMessage: {ex.Message}");
+				}
 				catch (Exception ex)
 				{
+					// Handling general exceptions
+					System.Diagnostics.Debug.WriteLine($"Some other exception occured.");
 					System.Diagnostics.Debug.WriteLine($"Exception: {ex.StackTrace}\nMessage: {ex.Message}");
 				}
 

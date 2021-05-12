@@ -28,6 +28,12 @@ namespace MovieApp.ViewModels.Details
 			}
 		}
 
+		/// <summary>
+		/// Loads details, seasons and all episodes of the show.
+		/// </summary>
+		/// <param name="parameter"></param>
+		/// <param name="mode"></param>
+		/// <param name="state"></param>
 		public override async Task OnNavigatedToAsync(
 			object parameter,
 			NavigationMode mode,
@@ -36,17 +42,26 @@ namespace MovieApp.ViewModels.Details
 		{
 			var slug = (string)parameter;
 			var service = new ShowService();
-			
+
+			// Load show details
 			ShowDetails = await service.GetShowDetailsAsync(slug);
+			// Load seasons of the show
 			var seasonsResult = await service.GetSeasonsOfShowAsync(slug);
 
-			foreach(SeasonDetails season in seasonsResult)
+			foreach (SeasonDetails season in seasonsResult)
 			{
-				for (int ep = 1; ep < season.EpisodeCount; ep++)
+				// Only load episodes of real seasons
+				if (season.Number > 0)
 				{
-					var episode = await service.GetEpisodesOfSeasonAsync(ShowDetails.Ids.Slug, season.Number, ep);
-					season.Episodes.Add(episode);
+					// Load all the episodes of current season
+					for (int ep = 1; ep < season.EpisodeCount; ep++)
+					{
+						var episode = await service.GetEpisodeOfSeasonAsync(ShowDetails.Ids.Slug, season.Number, ep);
+						season.Episodes.Add(episode);
+					}
 				}
+					
+				// Add loaded season to seasons list
 				Seasons.Add(season);
 			}
 

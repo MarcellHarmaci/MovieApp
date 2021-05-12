@@ -9,6 +9,10 @@ namespace MovieApp.Services
 {
 	class GenreService : TraktService
 	{
+		/// <summary>
+		/// Gets all the movie genres currently supported by Trakt API
+		/// </summary>
+		/// <returns>List of genres</returns>
 		public async Task<List<Genre>> GetMovieGenresAsync()
 		{
 			string relativeUri = $"genres/movies";

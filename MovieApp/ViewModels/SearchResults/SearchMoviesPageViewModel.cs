@@ -19,6 +19,9 @@ namespace MovieApp.ViewModels.SearchResults
 		public ObservableCollection<Movie> Movies { get; set; } =
 			new ObservableCollection<Movie>();
 
+		/// <summary>
+		/// No result text is only visible when the list of movies is empty
+		/// </summary>
 		public Visibility NoResultTextVisibility
 		{
 			get
@@ -47,13 +50,16 @@ namespace MovieApp.ViewModels.SearchResults
 		)
 		{
 			SearchTerm = (string)parameter;
+
+			// Get search results
 			var service = new MovieService();
 			var result = await service.GetMovieSearchResultsAsync(searchTerm);
 
-			Movies.Clear();
 			foreach(Movie movie in result)
 			{
+				// Display new result
 				Movies.Add(movie);
+				// Update no result text visibility
 				RaisePropertyChanged(() => NoResultTextVisibility);
 			}
 

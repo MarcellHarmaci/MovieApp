@@ -50,11 +50,16 @@ namespace MovieApp.ViewModels.Details
 			IDictionary<string, object> state
 		)
 		{
+			// Get slug of movie to display
 			var slug = (string)parameter;
+
+			// Instantiate required services
 			var movieService = new MovieService();
 			var personService = new PersonService();
 			
+			// Get details of current movie
 			MovieDetails = await movieService.GetMovieDetailsAsync(slug);
+			// Get the cast of current movie
 			Cast = await personService.GetCastOfMovieAsync(slug);
 
 			await base.OnNavigatedToAsync(parameter, mode, state);
