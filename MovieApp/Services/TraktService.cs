@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MovieApp.Services
 {
-	class TraktService
+	abstract class TraktService
 	{
 		/// <summary>
 		/// Trakt API key
@@ -43,8 +43,8 @@ namespace MovieApp.Services
 		/// Sets the necessary request headers and parses response json.
 		/// </summary>
 		/// <typeparam name="T">The type, to which the response json will be parsed</typeparam>
-		/// <param name="uri">Api endpoint URI to be called</param>
-		/// <returns>Api response persed to T template type</returns>
+		/// <param name="uri">Trakt Api endpoint URI to be called</param>
+		/// <returns>Api json response persed to T template type</returns>
 		protected async Task<T> GetAsync<T>(Uri uri)
 		{
 			using (var httpClient = new HttpClient())

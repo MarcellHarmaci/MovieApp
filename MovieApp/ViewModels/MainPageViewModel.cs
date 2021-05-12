@@ -163,7 +163,7 @@ namespace MovieApp.ViewModels
 						}
 				}
 			}
-			else System.Diagnostics.Debug.WriteLine($"Invalid state to search");
+			else System.Diagnostics.Debug.WriteLine("Invalid state to search");
 		}
 
 		private bool ValidateString(string value)
