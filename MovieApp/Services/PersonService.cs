@@ -40,10 +40,7 @@ namespace MovieApp.Services
 			string relativeUri = $"movies/{slug}/people";
 			Uri uri = new Uri(serverUrl, relativeUri);
 
-			System.Diagnostics.Debug.WriteLine(uri);
-
 			var staff = await GetAsync<ProductionStaff>(uri);
-
 			return staff.Cast;
 		}
 

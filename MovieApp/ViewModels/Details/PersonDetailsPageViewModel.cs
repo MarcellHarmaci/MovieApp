@@ -1,5 +1,6 @@
 ﻿using MovieApp.Models;
 using MovieApp.Services;
+using MovieApp.Views.Details;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace MovieApp.ViewModels.Details
 		{
 			var slug = (string)parameter;
 			var service = new PersonService();
+
 			PersonDetails = await service.GetPersonDetailsAsync(slug);
 
 			await base.OnNavigatedToAsync(parameter, mode, state);

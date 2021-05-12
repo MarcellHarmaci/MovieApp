@@ -14,11 +14,14 @@
 		<vm:SearchMoviesPageViewModel x:Name="ViewModel" />
 	</Page.DataContext>
 
-	<StackPanel Margin="16">
+	<StackPanel Margin="34">
 		<TextBlock Text="{Binding SearchTerm}" FontSize="18"
 				   Style="{ThemeResource BaseTextBlockStyle}"
 				   Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
 
+		<TextBlock Text="No results. Try searching for somathing else!"
+				   Visibility="{Binding NoResultTextVisibility}" />
+		
 		<ListView ItemsSource="{Binding Movies}" Height="544"
 				  IsItemClickEnabled="True" 
 				  ItemClick="MovieListItem_OnItemClick">

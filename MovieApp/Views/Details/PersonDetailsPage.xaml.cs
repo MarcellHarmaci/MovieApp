@@ -28,16 +28,5 @@ namespace MovieApp.Views.Details
 			this.InitializeComponent();
 		}
 
-		private void Movie_OnItemClick(object sender, ItemClickEventArgs e)
-		{
-			var cast = (Cast)e.ClickedItem;
-			ViewModel.NavigateToMovieDetails(cast.Person.Ids.Slug);
-		}
-
-		private void Show_OnItemClick(object sender, ItemClickEventArgs e)
-		{
-			var cast = (Cast)e.ClickedItem;
-			ViewModel.NavigateToMovieDetails(cast.Person.Ids.Slug);
-		}
 	}
 }

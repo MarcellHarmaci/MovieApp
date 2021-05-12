@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Template10.Mvvm;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 
 namespace MovieApp.ViewModels.SearchResults
@@ -17,6 +18,17 @@ namespace MovieApp.ViewModels.SearchResults
 
 		public ObservableCollection<Person> People { get; set; } =
 			new ObservableCollection<Person>();
+
+		public Visibility NoResultTextVisibility
+		{
+			get
+			{
+				if (People.Count > 0)
+					return Visibility.Collapsed;
+				else
+					return Visibility.Visible;
+			}
+		}
 
 		private string searchTerm = "<Search term>";
 		public string SearchTerm
@@ -43,6 +55,7 @@ namespace MovieApp.ViewModels.SearchResults
 			foreach (Person person in result)
 			{
 				People.Add(person);
+				RaisePropertyChanged(() => NoResultTextVisibility);
 			}
 
 			await base.OnNavigatedToAsync(parameter, mode, state);
